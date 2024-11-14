@@ -36,7 +36,7 @@ export const BorderBeam = ({
       }
       // eslint-disable-next-line tailwindcss/no-contradicting-classname
       className={cn(
-        "absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent]",
+        "absolute -inset-1 -z-10 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent]",
 
         // mask styles
         "![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)]",

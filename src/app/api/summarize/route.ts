@@ -9,6 +9,7 @@ const TEMPLATE = `
 INSTRUCTIONS: 
   For the this {text} complete the following steps.
   Generate the title for based on the content provided.
+  Generate 5 catchy and SEO friendly attention grabbing titles.
   Summarize the following content and include 5 key topics, writing in first person using normal tone of voice.
   
   Write a youtube video description
@@ -18,6 +19,8 @@ INSTRUCTIONS:
   Generate bulleted list of key points and benefits
 
   Return possible and best recommended keywords
+
+  Write in normal tone of voice using common English.
 `;
 
 async function generateSummary(content: string, template: string) {

@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
 import { TextShimmer } from "@/components/magicui/text-shimmer";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Particles } from "@/components/magicui/particles";
@@ -11,17 +11,20 @@ import { Summarize } from "./summarize";
 export function Hero({ isAuthenticated }: { isAuthenticated: boolean }) {
   return (
     <section className="relative mx-auto px-6 text-center md:px-8 pt-32 max-w-[80rem]">
-      <div className="inline-flex h-7 items-center justify-between rounded-full border bg-secondary text-secondary-foreground px-3 text-xs transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in">
+      <Link
+        href="https://pro.magicui.design/?ref=cat"
+        className="inline-flex h-7 items-center justify-between rounded-full border bg-secondary text-secondary-foreground px-3 text-xs transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in"
+      >
         <TextShimmer className="inline-flex items-center justify-center">
           <span className="text-xs text-secondary-foreground/60">
-            ✨ Introducing Magic UI Template
+            ✨ Try Magic UI Here
           </span>
           <ArrowRight
             size={20}
             className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5"
           />
         </TextShimmer>
-      </div>
+      </Link>
       <h1 className="bg-gradient-to-br from-foreground from-30% to-foreground/40 bg-clip-text py-6 text-center text-5xl font-medium font-heading leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-8xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms] caret-foreground">
         Magic UI is the new way to build landing pages.
       </h1>

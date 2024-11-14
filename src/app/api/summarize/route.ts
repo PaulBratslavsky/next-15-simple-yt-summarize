@@ -1,6 +1,9 @@
 import { NextRequest } from "next/server";
 import { auth } from "@/auth";
 
+export const maxDuration = 150;
+export const dynamic = "force-dynamic";
+
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";

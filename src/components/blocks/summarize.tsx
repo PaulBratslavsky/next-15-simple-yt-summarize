@@ -6,7 +6,6 @@ import { toast } from "sonner";
 import { extractYouTubeID } from "@/lib/utils";
 
 import { generateSummaryService } from "@/data/services/summary-service";
-
 import { SummaryForm } from "@/components/forms/summary-form";
 
 import SummaryCard from "@/components/custom/summary-card";
@@ -24,6 +23,7 @@ interface SummaryDataProps {
   title: string;
   videoId: string;
   summary: string;
+  transcript: string;
 }
 
 export function Summarize() {
@@ -72,7 +72,8 @@ export function Summarize() {
     const data = {
       title: `Summary for video: ${processedVideoId}`,
       videoId: processedVideoId,
-      summary: summaryResponseData.data,
+      summary: summaryResponseData?.data?.summary,
+      transcript: summaryResponseData?.data?.transcript,
     };
 
     setSummaryData({ ...data });

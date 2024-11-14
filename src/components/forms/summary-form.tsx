@@ -34,12 +34,13 @@ export function SummaryForm({
 
   return (
     <div className="relative m-1 w-full max-w-[960px]">
-
       <form
         onSubmit={handleFormSubmit}
         className="relative flex gap-2 items-center justify-center rounded-xl"
       >
-            <BorderBeam size={200} anchor={90} duration={10} borderWidth={1.5} />
+        {loading && (
+          <BorderBeam size={200} anchor={90} duration={10} borderWidth={1.5} />
+        )}
 
         <Input
           name="videoId"

@@ -83,7 +83,9 @@ export async function POST(req: NextRequest) {
 
   try {
     summary = await generateSummary(transcriptData, TEMPLATE);
-    return new Response(JSON.stringify({ data: summary, error: null }));
+    return new Response(
+      JSON.stringify({ data: { summary, transcript: transcriptData }, error: null })
+    );
   } catch (error) {
     console.error("Error processing request:", error);
     if (error instanceof Error)

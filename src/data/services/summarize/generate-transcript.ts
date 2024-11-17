@@ -1,26 +1,4 @@
-export interface TranscriptSegment {
-  text: string;
-  start: number;
-  end: number;
-  duration: number;
-}
-
-export interface TranscriptData {
-  title: string | undefined;
-  videoId: string | undefined;
-  thumbnailUrl: string | undefined;
-  fullTranscript: string | undefined;
-  transcriptWithTimeCodes: TranscriptSegment[] | undefined;
-}
-
-// Add proper typing for YouTube API response
-interface YouTubeTranscriptSegment {
-  snippet: {
-    text: string;
-  };
-  start_ms: string;
-  end_ms: string;
-}
+import { TranscriptData, TranscriptSegment, YouTubeTranscriptSegment } from "./types";
 
 const processTranscriptSegments = (segments: YouTubeTranscriptSegment[]): TranscriptSegment[] => {
   return segments.map((segment) => ({

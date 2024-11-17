@@ -1,8 +1,6 @@
 import { NextRequest } from "next/server";
 import { auth } from "@/auth";
-
-import { generateSummary } from "@/data/services/generate-summary";
-import { generateTranscript } from "@/data/services/generate-transcript";
+import { summarize } from "@/data/services/summarize";
 
 export const maxDuration = 150;
 export const dynamic = "force-dynamic";
@@ -10,65 +8,48 @@ export const dynamic = "force-dynamic";
 const TEMPLATE = `
 INSTRUCTIONS: 
   For the this {text} complete the following steps.
-  Generate the title for based on the content provided.
-  Generate 5 catchy and SEO friendly attention grabbing titles.
-  Summarize the following content and include 5 key topics, writing in first person using normal tone of voice.
-  
-  Write a youtube video description
-    - Include heading and sections.  
-    - Incorporate keywords and key takeaways
 
-  Generate bulleted list of key points and benefits
+  1. Generate a content-based title
+  2. Create 5 SEO-optimized alternative titles
+  3. Summarize the content with 5 key topics (first-person, conversational tone)
+  4. Write a YouTube video description:
+     - With headers and sections
+     - Including keywords and takeaways
+  5. List key points and benefits
+  6. Suggest optimal keywords
 
-  Return possible and best recommended keywords
+  Use natural, accessible English throughout.
+`.trim();
 
-  Write in normal tone of voice using common English.
-`;
-
-
-export async function POST(req: NextRequest) {
-  const session = await auth();
-
-  if (!session) {
-    return new Response(
-      JSON.stringify({ data: null, error: "Not authenticated" }),
-      { status: 401 }
-    );
-  }
-
-
-  const body = await req.json();
-  const videoId = body.videoId;
-
-  let transcriptData;
-
+export async function POST(req: NextRequest): Promise<Response> {
   try {
-    transcriptData  = await generateTranscript(videoId);
-    console.dir(transcriptData, { depth: null });
+    const session = await auth();
+    if (!session) {
+      return Response.json(
+        { data: null, error: "Not authenticated" },
+        { status: 401 }
+      );
+    }
+
+    const { videoId } = await req.json();
+
+    if (!videoId) {
+      return Response.json(
+        { data: null, error: "Video ID is required" },
+        { status: 400 }
+      );
+    }
+
+    const result = await summarize(videoId, TEMPLATE);
+    return Response.json({ data: result, error: null });
   } catch (error) {
     console.error("Error processing request:", error);
-    if (error instanceof Error)
-      return new Response(JSON.stringify({ error: error.message }));
-    return new Response(JSON.stringify({ error: "Unknown error" }));
-  }
-
-  const transcript = transcriptData?.fullTranscript;
-  const title = transcriptData?.title;
-  const thumbnailUrl = transcriptData?.thumbnailUrl;
-
-  if (!transcript) throw new Error("No transcript data found");
-  
-  let summary: Awaited<ReturnType<typeof generateSummary>>;
-
-  try {
-    summary = await generateSummary(transcript, TEMPLATE);
-    return new Response(
-      JSON.stringify({ data: { summary, transcript, title, thumbnailUrl }, error: null })
+    return Response.json(
+      {
+        data: null,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
     );
-  } catch (error) {
-    console.error("Error processing request:", error);
-    if (error instanceof Error)
-      return new Response(JSON.stringify({ error: error.message }));
-    return new Response(JSON.stringify({ error: "Error generating summary." }));
   }
 }

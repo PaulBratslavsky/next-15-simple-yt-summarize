@@ -4,8 +4,6 @@ import React from "react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { extractYouTubeID } from "@/lib/utils";
-
-import { generateSummaryService } from "@/data/services/summary-service";
 import { SummaryForm } from "@/components/forms/summary-form";
 
 import SummaryCard from "@/components/custom/summary-card";
@@ -24,7 +22,23 @@ interface SummaryDataProps {
   videoId: string;
   summary: string;
   transcript: string;
+  thumbnailUrl: string;
 }
+export async function generateSummaryApiRoute(videoId: string) {
+  const url = "/api/summarize";
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({ videoId: videoId }),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Failed to generate summary:", error);
+    if (error instanceof Error) return { error: { message: error.message } };
+    return { data: null, error: { message: "Unknown error" } };
+  }
+}
+
 
 export function Summarize() {
   const [loading, setLoading] = useState(false);
@@ -55,7 +69,7 @@ export function Summarize() {
 
     toast.success("Generating Summary");
 
-    const summaryResponseData = await generateSummaryService(processedVideoId);
+    const summaryResponseData = await generateSummaryApiRoute(processedVideoId);
 
     if (summaryResponseData.error) {
       setValue("");

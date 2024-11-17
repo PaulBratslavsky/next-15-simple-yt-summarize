@@ -35,7 +35,8 @@
     "react-player": "^2.16.0",
     "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "youtubei.js": "^11.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

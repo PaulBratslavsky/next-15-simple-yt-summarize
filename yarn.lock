@@ -20,12 +20,22 @@
     preact "10.11.3"
     preact-render-to-string "5.2.3"
 
+"@bufbuild/protobuf@^2.0.0":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@bufbuild/protobuf/-/protobuf-2.2.2.tgz#1a6d89603fb215dc4d4178052d05b30b83c75402"
+  integrity sha512-UNtPCbrwrenpmrXuRwn9jYpPoweNXj8X5sMvYgsqYyaH8jQ6LfUJSk3dJLnBK+6sfYPrF4iAIo5sd5HQ+tg75A==
+
 "@emnapi/runtime@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-1.2.0.tgz#71d018546c3a91f3b51106530edbc056b9f2f2e3"
   integrity sha512-bV21/9LQmcQeCPEg3BDFtvwL6cwiTMksYNWQQ4KOxCZikEGalWtenoZ0wCiukJINlGCIi2KXx01g4FoH/LxpzQ==
   dependencies:
     tslib "^2.4.0"
+
+"@fastify/busboy@^2.0.0":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
+  integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
 
 "@floating-ui/core@^1.6.0":
   version "1.6.8"
@@ -793,6 +803,11 @@ abort-controller@^3.0.0:
   dependencies:
     event-target-shim "^5.0.0"
 
+acorn@^8.8.0:
+  version "8.14.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
+  integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
+
 agentkeepalive@^4.2.1:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/agentkeepalive/-/agentkeepalive-4.5.0.tgz#2673ad1389b3c418c5a20c5d7364f93ca04be923"
@@ -1394,6 +1409,13 @@ jackspeak@^3.1.2:
     "@isaacs/cliui" "^8.0.2"
   optionalDependencies:
     "@pkgjs/parseargs" "^0.11.0"
+
+jintr@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/jintr/-/jintr-3.0.2.tgz#633ecc8da930d25f5004697acb5af4ff36628f26"
+  integrity sha512-5g2EBudeJFOopjAX4exAv5OCCW1DgUISfoioCsm1h9Q9HJ41LmnZ6J52PCsqBlQihsmp0VDuxreAVzM7yk5nFA==
+  dependencies:
+    acorn "^8.8.0"
 
 jiti@^1.21.0:
   version "1.21.6"
@@ -2487,7 +2509,7 @@ ts-interface-checker@^0.1.9:
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
 
-tslib@^2.0.0, tslib@^2.1.0:
+tslib@^2.0.0, tslib@^2.1.0, tslib@^2.5.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
@@ -2511,6 +2533,13 @@ undici-types@~6.19.2, undici-types@~6.19.8:
   version "6.19.8"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
   integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
+
+undici@^5.19.1:
+  version "5.28.4"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.28.4.tgz#6b280408edb6a1a604a9b20340f45b422e373068"
+  integrity sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==
+  dependencies:
+    "@fastify/busboy" "^2.0.0"
 
 unified@^11.0.0:
   version "11.0.5"
@@ -2651,6 +2680,16 @@ yaml@^2.3.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.5.0.tgz#c6165a721cf8000e91c36490a41d7be25176cf5d"
   integrity sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==
+
+youtubei.js@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/youtubei.js/-/youtubei.js-11.0.1.tgz#5729bbf2df8dff58c3555140d23ae83c458f0b34"
+  integrity sha512-ZsbOd+5XF2Ofi3FrLMfYd+f9g9H8xswlouFhjhOqbwT68dMJtX6CRGsHNj5VTFCR/+L/865x1lnUlllB2dDDTA==
+  dependencies:
+    "@bufbuild/protobuf" "^2.0.0"
+    jintr "^3.0.2"
+    tslib "^2.5.0"
+    undici "^5.19.1"
 
 zod-to-json-schema@^3.22.3:
   version "3.23.5"

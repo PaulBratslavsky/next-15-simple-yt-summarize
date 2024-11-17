@@ -69,11 +69,13 @@ export function Summarize() {
       return;
     }
 
+
     const data = {
-      title: `Summary for video: ${processedVideoId}`,
       videoId: processedVideoId,
+      title: summaryResponseData?.data?.title,
       summary: summaryResponseData?.data?.summary,
       transcript: summaryResponseData?.data?.transcript,
+      thumbnailUrl: summaryResponseData?.data?.thumbnailUrl,
     };
 
     setSummaryData({ ...data });

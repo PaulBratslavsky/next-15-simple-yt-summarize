@@ -10,25 +10,34 @@ interface SummaryCardProps {
     videoId: string;
     summary: string;
     transcript: string;
+    thumbnailUrl: string;
   };
 }
 
 export default function SummaryCard({ summaryData }: SummaryCardProps) {
-  const { videoId, summary, transcript } = summaryData;
+  const { videoId, summary, transcript, title, thumbnailUrl } = summaryData;
   return (
-    <div className="h-full max-w-[960px] mx-auto grid gap-6 grid-cols-5 w-full py-8">
-      <div className="col-span-3 border-2 p-4 border-gray-900 rounded-xl">
-        <ScrollArea className="h-[800px]">
+    <div className="h-full max-w-[960px] mx-auto w-full py-8">
+      <div className="flex items-center gap-4 mb-8">
+        {thumbnailUrl && <img src={thumbnailUrl} alt="YouTube Thumbnail" width={200} height={100} className="rounded-xl"/>}
+        <h2 className="text-2xl font-bold text-left">{title}</h2>
+      </div>
+      <div className="grid grid-cols-5 gap-6">
+        <div className="col-span-3 border-2 p-4 border-gray-900 rounded-xl">
+          <ScrollArea className="h-[800px]">
           <ReactMarkdown className="markdown-preview">{summary}</ReactMarkdown>
         </ScrollArea>
       </div>
       <div className="col-span-2 border-2 p-4 border-gray-900 rounded-xl">
-        <ClientYouTubePlayer videoId={videoId as string} />
-        <ScrollArea className="h-[500px] m-4">
+        <ClientYouTubePlayer
+          videoId={videoId as string}
+        />
+        <ScrollArea className="h-[600px] m-4">
           <ReactMarkdown className="markdown-preview">
             {transcript}
           </ReactMarkdown>
-        </ScrollArea>
+          </ScrollArea>
+        </div>
       </div>
     </div>
   );

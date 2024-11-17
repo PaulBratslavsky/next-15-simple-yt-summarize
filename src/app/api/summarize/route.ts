@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
   try {
     transcriptData  = await generateTranscript(videoId);
-    console.log(transcriptData);
+    console.dir(transcriptData, { depth: null });
   } catch (error) {
     console.error("Error processing request:", error);
     if (error instanceof Error)
@@ -53,6 +53,8 @@ export async function POST(req: NextRequest) {
   }
 
   const transcript = transcriptData?.fullTranscript;
+  const title = transcriptData?.title;
+  const thumbnailUrl = transcriptData?.thumbnailUrl;
 
   if (!transcript) throw new Error("No transcript data found");
   
@@ -61,7 +63,7 @@ export async function POST(req: NextRequest) {
   try {
     summary = await generateSummary(transcript, TEMPLATE);
     return new Response(
-      JSON.stringify({ data: { summary, transcript }, error: null })
+      JSON.stringify({ data: { summary, transcript, title, thumbnailUrl }, error: null })
     );
   } catch (error) {
     console.error("Error processing request:", error);
